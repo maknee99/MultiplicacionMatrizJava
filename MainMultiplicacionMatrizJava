@@ -1,0 +1,52 @@
+public class MultiplicacionMatriz {
+    public static void main(String[] args) {
+        int matriz1[][] = crearMatriz();
+        System.out.println("Esta es la impresion de la primera matriz");
+        printMatriz(matriz1);
+        int matriz2[][] = crearMatriz();
+        System.out.println("Esta es la impresion de la segunda matriz");
+        printMatriz(matriz2);
+        System.out.println("Esta es la multiplicacion de las dos matrices");
+        printMatriz(multiplicarMatrices(matriz1, matriz2));
+    }
+
+    public static int[][] crearMatriz() {
+        int a, b;
+        Scanner tecladoMatriz = new Scanner(System.in);
+        System.out.println("Elige cuantas filas quieres que tenga la matriz:");
+        a = tecladoMatriz.nextInt();
+        System.out.println("Elige cuantas colunnas quieres que tenga la matriz: ");
+        b = tecladoMatriz.nextInt();
+        int matriz[][] = new int[a][b];
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                matriz[i][j] = (int) (Math.random() * 100);
+            }
+        }
+        return matriz;
+    }
+
+    public static void printMatriz(int[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static int[][] multiplicarMatrices(int matrizA[][], int matrizB[][]) {
+        int filas = matrizA.length;
+        int columnas = matrizB[0].length;
+        int[][] resultado = new int[filas][columnas];
+        for (int i = 0; i < matrizA.length; i++) {
+            for (int j = 0; j < matrizB[0].length; j++) {
+                for (int k = 0; k < matrizA[0].length; k++) {
+                    resultado[i][j] += matrizA[i][k] * matrizB[k][j];
+                }
+            }
+        }
+        return resultado;
+    }
+
+}
